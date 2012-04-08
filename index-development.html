@@ -35,8 +35,7 @@
             function getParser(fname) {
                 xmlhttp = getXmlHttp();
                 xmlhttp.onreadystatechange = function() {
-                    if(xmlhttp.readyState == 4) {
-                        console.log(xmlhttp.responseText);
+                    if(xmlhttp.readyState == 4) {                        
                         // Compile parser
                         try {
                             parser = PEG.buildParser(xmlhttp.responseText);
