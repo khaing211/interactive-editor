@@ -10,6 +10,7 @@ Open index.html and it just works :D. Don't read anymore if you are not a develo
         * theme: plugins to change theme of editor
     - pegjs: contains [PEG](http://pegjs.majda.cz/). PEG is a parser generator 
     - parsers: contains parsers produced by PEG
+    - ieditor: contains interactive editor code. Look at header of each file for description.
 + ast/ contains grammar of any language written in PEG syntax in order for PEG to produce a parser
     - javascript.pegjs: javascript grammar for example
 + index.html: your editor
