@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+    <head>
+        <title>IEditor - Interactive Javascript Editor</title>
+        <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="../doc/docs.css">
+        <script src="lib/pegjs/peg-0.6.2.min.js"></script>
+        <script src="lib/codemirror/lib/codemirror.js"></script>
+        <script src="lib/codemirror/mode/javascript/javascript.js"></script>        
+        
+        
+    </head>
+    <body>
+        <h1>IEditor - Development Version</h1>
+        <form>
+            <textarea id="code" name="code">
+                // Type your code here
+            </textarea>
+        </form>
+
+        <script>
+            var parser;
+            var editor;
+            
+            function getXmlHttp() {
+                if(window.XMLHttpRequest) {
+                    xmlhttp = new XMLHttpRequest();
+                } else if(window.ActiveXObject) {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                if(xmlhttp == null) {
+                    alert("Your browser does not support XMLHTTP.");
+                }
+                return xmlhttp;
+            }
+
+            function getParser(fname) {
+                xmlhttp = getXmlHttp();
+                xmlhttp.onreadystatechange = function() {
+                    if(xmlhttp.readyState == 4) {
+                        console.log(xmlhttp.responseText);
+                        // Compile parser
+                        try {
+                            parser = PEG.buildParser(xmlhttp.responseText);
+                            
+                            console.log("Initialized parser");
+                            
+                            editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+                                lineNumbers : true,
+                                mode : "javascript"
+                            });
+                            
+                            console.log("Initialized editor");                            
+                            
+                        } catch (ex) {
+                            console.log("Unable to build parser")
+                            console.log(ex)
+                        }
+                    }
+                }
+                xmlhttp.open("GET", fname, true);
+                xmlhttp.send(null);
+            }
+
+            getParser("ast/javascript.pegjs");
+
+        </script>
+    </body>
+    
+</html>
