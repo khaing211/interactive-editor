@@ -13,6 +13,7 @@ Open index.html and it just works :D. Don't read anymore if you are not a develo
     - ieditor: contains interactive editor code. Look at header of each file for description.
 + ast/ contains grammar of any language written in PEG syntax in order for PEG to produce a parser
     - javascript.pegjs: javascript grammar for example
++ test/ contains all tests
 + index.html: your editor
 + index-development.html: development-version of the editor, see Development Setup for explaination
 
