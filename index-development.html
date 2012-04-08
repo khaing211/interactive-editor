@@ -2,23 +2,23 @@
 <html>
     <head>
         <title>IEditor - Interactive Javascript Editor</title>
-        <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
-        <link rel="stylesheet" href="../doc/docs.css">
+        <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">        
+        <link rel="stylesheet" href="css/style.css">
         <script src="lib/pegjs/peg-0.6.2.min.js"></script>
         <script src="lib/codemirror/lib/codemirror.js"></script>
-        <script src="lib/codemirror/mode/javascript/javascript.js"></script>        
-        
-        
+        <script src="lib/codemirror/mode/javascript/javascript.js"></script>                
     </head>
     <body>
         <h1>IEditor - Development Version</h1>
         <form>
             <textarea id="code" name="code">// Type your code here</textarea>
+            <textarea id="terminal" name="terminal"></textarea>
         </form>
 
         <script>
             var parser;
             var editor;
+            var terminal;
             
             function getXmlHttp() {
                 if(window.XMLHttpRequest) {
@@ -32,7 +32,7 @@
                 return xmlhttp;
             }
 
-            function getParser(fname) {
+            function getParser() {
                 xmlhttp = getXmlHttp();
                 xmlhttp.onreadystatechange = function() {
                     if(xmlhttp.readyState == 4) {                        
@@ -47,19 +47,24 @@
                                 mode : "javascript"
                             });
                             
-                            console.log("Initialized editor");                            
+                            console.log("Initialized editor");
                             
+                            terminal = CodeMirror.fromTextArea(document.getElementById("terminal"), {
+                                mode : "javascript"
+                            });
+                            
+                            console.log("Initialized terminal");                                                                            
                         } catch (ex) {
                             console.log("Unable to build parser")
                             console.log(ex)
                         }
                     }
                 }
-                xmlhttp.open("GET", fname, true);
+                xmlhttp.open("GET", "ast/javascript.pegjs", true);
                 xmlhttp.send(null);
             }
 
-            getParser("ast/javascript.pegjs");
+            getParser();
 
         </script>
     </body>
