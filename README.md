@@ -35,12 +35,13 @@ In index.html, we will just load compile parser from parser directory.
 ### Commandline Interface
 From PEG documentation, you just 
 
-> `npm install pegjs`
+`npm install pegjs`
 
 For me, it installs to ~/bin rather than /usr/bin/. I don't know why...
 
-### Example for javascript. Assume current directory is PROJECT HOME
-> `path/to/pegjs ast/javascript.pegjs parsers/javascript.js`
+Example for javascript. Assume current directory is PROJECT HOME
+
+`path/to/pegjs ast/javascript.pegjs parsers/javascript.js`
 
 
 # Code Rule
