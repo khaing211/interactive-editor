@@ -8,7 +8,7 @@ Open index.html and it just works :D. Don't read anymore if you are not a develo
         * lib: codemirror core
         * mode: plugins to handle different language (each directory has js and example)
         * theme: plugins to change theme of editor
-    - peg: contains [PEG](http://pegjs.majda.cz/). PEG is a parser generator 
+    - pegjs: contains [PEG](http://pegjs.majda.cz/). PEG is a parser generator 
     - parser: contains parsers produced by PEG
 + ast/ contains grammar of any language written in PEG syntax in order for PEG to produce a parser
     - js.peg: javascript grammar
