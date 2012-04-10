@@ -7,19 +7,20 @@
         <script src="lib/pegjs/peg-0.6.2.min.js"></script>
         <script src="lib/codemirror/lib/codemirror.js"></script>
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
-        <script src="lib/ieditor/sandbox.js"></script>                
+        <script src="lib/ieditor/sandbox.js"></script>
+        <script src="lib/ieditor/ieditor.js"></script>                
     </head>
     <body>
         <h1>IEditor - Development Version</h1>
         <form>
-            <textarea id="code" name="code">// Type your code here</textarea>
+            <textarea id="editor" name="code">// Type your code here</textarea>                        
             <textarea id="terminal" name="terminal"></textarea>
-        </form>
+        </form>        
         <script>
-            var parser;
-            var editor;
-            var terminal;
+            var ieditor = IEditor("editor","terminal");
             
+            
+            /*
             function getXmlHttp() {
                 if(window.XMLHttpRequest) {
                     xmlhttp = new XMLHttpRequest();
@@ -65,7 +66,7 @@
             }
 
             getParser();
-
+            */
         </script>
     </body>
     
