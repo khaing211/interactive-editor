@@ -1,22 +1,17 @@
-/*
- * Classic example grammar, which recognizes simple arithmetic expressions like
- * "2*(3+4)". The parser generated from this grammar then computes their value.
- */
+js_func = "function" whitespace  func:funct_name whitespace "(" whitespace ")" whitespace  "{" whitespace  stmts:js_stmt_list* whitespace "}" { return ["function", "(", ")", func, "{", stmts, "}"]; } 
 
-start
-  = additive
+funct_name = name:[a-z]+ { return name.join(""); }
 
-additive
-  = left:multiplicative "+" right:additive { return left + right; }
-  / multiplicative
+js_stmt_list = js_empty_stmt / js_decl_stmt / js_def_stmt
 
-multiplicative
-  = left:primary "*" right:multiplicative { return left * right; }
-  / primary
+js_empty_stmt = whitespace ";" whitespace { return ";" }
 
-primary
-  = integer
-  / "(" additive:additive ")" { return additive; }
+js_decl_stmt = whitespace "var" whitespace varname:var_name whitespace ";" whitespace { return ["var " + varname, "save(" + varname +")"]; }
 
-integer "integer"
-  = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
+js_def_stmt = whitespace "var" whitespace varname:var_name whitespace "=" whitespace i:integer whitespace ";" whitespace { return ["var", varname, "=", i]; }
+
+var_name = name:[a-z]+ { return name.join(""); }
+
+integer = digits:[0-9]+ { return digits.join(""); }
+
+whitespace = [ \n\t]* { return ''; }
