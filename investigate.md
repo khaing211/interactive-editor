@@ -1,5 +1,6 @@
 *Date: April 8, 2012*
 *Author: Khai Nguyen*
+* * *
 
 First, we need to implement our autoformat to control the visualization.
 
@@ -37,3 +38,35 @@ A mode extension defines like the following i.e. a dictionary.
 Meaning:
 + This implies that defining a new mode will replaces the old mode.
 
+* * *
+* * *
+
+*Date: April 10, 2012*
+*Author: Khai Nguyen*
+
+Documentation onChange
+`onChange (function)`
+> When given, this function will be called every time the content of the editor is changed. 
+> It will be given the editor instance as first argument, and an `{from, to, text, next}` object 
+> containing information about the changes that occurred as second argument. from and to are the 
+> positions (in the pre-change coordinate system) where the change started and ended (for example, 
+> it might be `{ch:0, line:18}` if the position is at the beginning of line #19). text is an array of 
+> strings representing the text that replaced the changed range (split by line). If multiple changes 
+> happened during a single operation, the object will have a next property pointing to another change 
+> object (which may point to another, etc).
+
+Translation:
++ The second parameters could be called "changes" i.e. a linked list of change
++ from, to are of type {ch, line} with ch,line are 0-based and in pre-change coordinate system
++ ch is position of character in that line.
++ text are array of string that splits by line i.e. more than one element = multiple lines => line changes.
+
+Experiment:
++ if there is no next change, there is no field "next". Not that field "next" is undefined.
++ insertion: from,to are the same and points to place of insertion. text is an array of insertion. For example: aba => aaba would produce from: {ch:1, line:0} to: {ch: 1, line: 0} 
++ replacement: from,to are the range of replacement. text is the replacement
++ deletion: is same as replacement but with "" for text.
+
+After experiment:
++ from, to could be thought as exclusive range i.e. [from, to)
++ when from, to are equals, it mean empty range.
