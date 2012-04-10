@@ -1,8 +1,8 @@
 .CodeMirror {
     border: 1px solid #eee;
-    width: 550px;
-    float: left;
-    margin: 20px;
+    width: 500px;
+    float: left;     
+    margin-right: 20px;
 }
 
 .CodeMirror-scroll {
