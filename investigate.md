@@ -37,6 +37,7 @@ A mode extension defines like the following i.e. a dictionary.
 `commentStart: "/*",`
 
 Meaning:
+
 + This implies that defining a new mode will replaces the old mode.
 
 * * *
@@ -57,17 +58,20 @@ Documentation onChange
 > object (which may point to another, etc).
 
 Translation:
+
 + The second parameters could be called "changes" i.e. a linked list of change
 + from, to are of type {ch, line} with ch,line are 0-based and in pre-change coordinate system
 + ch is position of character in that line.
 + text are array of string that splits by line i.e. more than one element = multiple lines => line changes.
 
 Experiment:
+
 + if there is no next change, there is no field "next". Not that field "next" is undefined.
 + insertion: from,to are the same and points to place of insertion. text is an array of insertion. For example: aba => aaba would produce from: {ch:1, line:0} to: {ch: 1, line: 0} 
 + replacement: from,to are the range of replacement. text is the replacement
 + deletion: is same as replacement but with "" for text.
 
 After experiment:
+
 + from, to could be thought as exclusive range i.e. [from, to)
 + when from, to are equals, it mean empty range.
