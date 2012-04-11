@@ -22,6 +22,7 @@ Furthermore, inside the function call, there is this line
 `this.getModeExt().autoFormatLineBreaks(this.getValue(), absStart, absEnd);`
 
 Meaning:
+
 + "this" refers to editor object.
 + You also have a mode extension i.e. a plugin on a specific mode (or language). to get it
 
