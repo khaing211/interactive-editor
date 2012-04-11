@@ -46,4 +46,4 @@ Example for javascript. Assume current directory is PROJECT HOME
 
 # Code Rule
 + tab: 4 spaces
-##testing
+#test
