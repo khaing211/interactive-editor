@@ -9,16 +9,18 @@
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
         <script src="lib/ieditor/sandbox.js"></script>
         <script src="lib/ieditor/ieditor.js"></script>
+        <script src="lib/ieditor/format.js"></script>
     </head>
     <body>
         <h1>IEditor - Development Version</h1>
         <form action="">
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal"></textarea>
-        </form>        
+        </form>
         <script>
             var ieditor = IEditor("editor","terminal");
-
+            Format.init(ieditor);
+            Format.alignment();
             /*
             function getXmlHttp() {
                 if(window.XMLHttpRequest) {
