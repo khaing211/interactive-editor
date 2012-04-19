@@ -7,12 +7,12 @@
         <script src="lib/codemirror/lib/codemirror.js"></script>
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
         <script src="lib/esprima/esprima.js"></script>
+        <script src="lib/ieditor/ajax.js"></script>
         <script src="lib/ieditor/sandbox.js"></script>                
         <script src="lib/ieditor/tracer.js"></script>
         <script src="lib/ieditor/format.js"></script>        
         <script src="lib/ieditor/ieditor.js"></script>
-        <script src="lib/ieditor/system.js"></script>
-                        
+        <script src="lib/ieditor/system.js"></script>                        
     </head>
     <body>
         <h1>IEditor</h1>
@@ -21,7 +21,7 @@
             <textarea id="terminal" name="terminal"></textarea>
         </form>
         <script>
-            IEditor("editor","terminal");
+            IEditor("editor","terminal", "system");
         </script>
     </body>
 </html>
