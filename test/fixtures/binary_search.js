@@ -7,7 +7,7 @@ function binarySearch(needle, haystack, case_insensitive) {
 	needle = (case_insensitive) ? needle.toLowerCase():needle;
 	
 	while (low <= high) {
-		mid = parseInt((low + high) / 2)
+		mid = parseInt((low + high) / 2, 10);
 		element = (case_insensitive) ? haystack[mid].toLowerCase():haystack[mid];
 		if (element > needle) {
 			high = mid - 1;
