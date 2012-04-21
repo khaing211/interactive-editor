@@ -64,26 +64,54 @@
             // }
             // fdSliderController.addEvent(window, 'load', updateSelect);
             $(document).ready(function(){
-                var cachedObj = $('#slider');
+                var cachedObj = $('#slider'),
+                    startIndex = 100;
                 cachedObj.slider({
-                    slide: function(event, ui) {
-                        // retrieve all the data
-                        var editorValue = $('body').data('editorValue'),
-                            terminal = $('body').data('terminal'),
-                            snapshot = $('body').data('snapshot');
-                        if (snapshot !== undefined) {
-                            var sizeOfSnapShot = snapshot.length,
-                                range = {
-                                    'from': 0,
-                                    'to': Math.round((sizeOfSnapShot / 100) * ui.value)
-                                };
-                            // create the fromat object and run the align again
-                            Format.align(editorValue, terminal, snapshot.slice(range.from, range.to));
+                    change: function(event, ui) {
+                        console.log(ui.value);
+                        var curIndex = ui.value,
+                            sIndex = startIndex,
+                            snapshotSize = Format.getSnapshotSize();
+                        snapshotSize =  9;
+                        var x = Math.round((snapshotSize / 100) * curIndex);
+                        if (curIndex > startIndex) {
+                            // call forward
+                            console.log('call forward');
+                            console.log('x: ' + x);
+                        } else if(curIndex < startIndex) {
+                            // call rewrind
+                            console.log('call rewind');
+                            console.log('x: ' + x);
                         }
+                        // // retrieve all the data
+                        // var editorValue = $('body').data('editorValue'),
+                        //     terminal = $('body').data('terminal'),
+                        //     snapshot = $('body').data('snapshot');
+                        // if (snapshot !== undefined) {
+                        //     var sizeOfSnapShot = snapshot.length,
+                        //         to = Math.round((sizeOfSnapShot / 100) * ui.value);
+                        //     if (to !== 0) {
+                        //         var range = {
+                        //                 'from': 0,
+                        //                 'to': to
+                        //             };
+                        //         // create the fromat object and run the align again
+                        //         // Format.align(editorValue, snapshot.slice(range.from, range.to));
+                        //         if ($(this).slider('value') > ui.value) {
+                        //             
+                        //         }
+                        //     }
+                        // }
+                    },
+                    start: function(event, ui) {
+                        console.log(ui.value);
+                        // $('body').data('sliderIndex', ui.value);
+                        startIndex = ui.value;
                     }
+
                 });
-                cachedObj.slider("value", 100); // default value is 100
-                cachedObj.slider("disable");    // disable it
+                cachedObj.slider("value", startIndex); // default value is 100
+                cachedObj.slider("enable");    // disable it
             });
         </script>
     </body>
