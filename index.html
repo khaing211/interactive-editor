@@ -66,8 +66,9 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
-        <div id="console" style="widht:49%; background: #eee;">
+        <div id="console" class="well" style="widht:49%; background: #eee; margin:0; position:relative;display:none;">
             <!-- Insert the debug info here -->
+            <i class="icon-remove" id="close-debug" style="position:absolute; top:0; right:0;cursor:pointer;"></i>
         </div>
         <script>
             IEditor("editor","terminal", "system");
@@ -118,6 +119,15 @@
                         }
                     });
                     // running debuging
+                    $("#debug").click(function(e){
+                        e.preventDefault();
+                        // TODO: get the real error
+                        $("#console").append("<span>Great! Successful execute the script.<\/span>").show().addClass('well');
+                    });
+                    $("#close-debug").click(function(e){
+                        e.preventDefault();
+                        $(this).parent().hide().removeClass('well').children('span').remove();
+                    })
 
                 })();
             });
