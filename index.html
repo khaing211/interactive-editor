@@ -7,6 +7,11 @@
         <link rel="stylesheet" href="css/style.css">
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
         <script src="lib/codemirror/lib/codemirror.js"></script>
+        <!-- Added simple hint -->
+        <script src="lib/codemirror/lib/util/simple-hint.js"></script>
+        <link rel="stylesheet" href="lib/codemirror/lib/util/simple-hint.css">
+        <script src="lib/codemirror/lib/util/javascript-hint.js"></script>
+        <!-- End adding javascript hint -->
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script src="lib/ieditor/util.js"></script>
@@ -107,7 +112,7 @@
                     var controlbarDiv = $('#controlbar');
                     controlbarDiv.waypoint(function(event, direction){
                         if (direction === 'down') {
-                            controlbarDiv.css({'position': 'fixed', 'top': 5, 'z-index': 100});
+                            controlbarDiv.css({'position': 'fixed', 'top': 5, 'z-index': 10});
                         } else {
                             controlbarDiv.css({'position': ''});
                         }
