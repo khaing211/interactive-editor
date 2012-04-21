@@ -5,7 +5,7 @@
 
 .CodeMirror-scroll {
     height: auto;
-    min-height: 600px;
+    min-height: 300px;
     overflow-y: hidden;
     overflow-x: auto;
 }

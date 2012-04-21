@@ -128,8 +128,11 @@
                     $("#close-debug").click(function(e){
                         e.preventDefault();
                         $(this).parent().hide().removeClass('well').children('span').remove();
-                    })
+                    });
 
+                    // make the height to full size
+                    var winHeight = $(window).height();
+                    $('.CodeMirror').height(winHeight - 120);
                 })();
             });
         </script>
