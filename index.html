@@ -38,7 +38,7 @@
             </div>
             <div class="row" id="controlbar" style="margin: 5px 0;">
                 <div class="span12">
-                    <div class="span5">
+                    <div class="span6">
                         <h6 class="span2">Choose Language:</h6>
                         <select name="language" id="language" style="margin:0;position:relative;top:-5px;">
                             <option value="1">Javascript</option>
@@ -46,11 +46,12 @@
                             <option value="3">Ruby</option>
                             <option value="4">Python</option>
                         </select>
+                        <button class="btn btn-danger" id="debug" style="position: relative; top:-5px;">Debug</button>
                     </div>
                     <div class="span2" style="text-align:right;">
                         <h6>History Timeline: </h6>
                     </div>
-                    <div class="span4">
+                    <div class="span3">
                         <div id="slider"></div>
                     </div>
                 </div>
@@ -61,7 +62,7 @@
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
         <div id="console" style="widht:49%; background: #eee;">
-            This is a result div.
+            <!-- Insert the debug info here -->
         </div>
         <script>
             IEditor("editor","terminal", "system");
@@ -106,11 +107,13 @@
                     var controlbarDiv = $('#controlbar');
                     controlbarDiv.waypoint(function(event, direction){
                         if (direction === 'down') {
-                            controlbarDiv.css({'position': 'fixed', 'top': 5});
+                            controlbarDiv.css({'position': 'fixed', 'top': 5, 'z-index': 100});
                         } else {
                             controlbarDiv.css({'position': ''});
                         }
                     });
+                    // running debuging
+
                 })();
             });
         </script>
