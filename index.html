@@ -74,40 +74,41 @@
             var ieditor = IEditor("editor","terminal", "system");
             //Added scrollbar
             // Preloading the images used for the slider handle
+            function createSlider(cachedObj, size) {
+                var startIndex;
+                cachedObj.slider({
+                    step: 1,
+                    max: size,
+                    change: function(event, ui) {
+                        var curIndex = ui.value,
+                        snapshotSize = Format.getSnapshotSize(),
+                        sizeOfslider = cachedObj.slider('value');
+
+                        if (curIndex > startIndex) {
+                            // call forward
+                            // console.log(curIndex);
+                            // console.log('forwarding');
+                            Format.forward(curIndex);
+                            } else if(curIndex < startIndex) {
+                            // call rewrind
+                            // console.log(curIndex);
+                            // console.log('rewinding');
+                            Format.rewind(curIndex);
+                        }
+                    },
+                    start: function(event, ui) {
+                        startIndex = ui.value;
+                        // cachedObj.slider('value', Format.getSnapshotSize());
+                    }
+
+                });
+                cachedObj.slider('value', size);
+            }
             $(document).ready(function(){
                 (function(){
-                    var cachedObj = $('#slider'),
-                    startIndex = 100;
-                    cachedObj.slider({
-                        change: function(event, ui) {                            
-                            var curIndex = ui.value,
-                            sIndex = startIndex,
-                            snapshotSize = Format.getSnapshotSize(),
-                            sizeOfslider = cachedObj.slider('value');
-
-                            if (sizeOfslider === 0) {
-                                x = Math.round((snapshotSize / 1) * curIndex);
-                                console.log(sizeOfslider);
-                            } else {
-                                x = Math.round((snapshotSize / sizeOfslider) * curIndex);
-                            }
-
-                            if (curIndex > startIndex) {
-                                // call forward                               
-                                Format.forward(x);
-                            } else if(curIndex < startIndex) {
-                                // call rewrind
-                                Format.rewind(x);
-                            }
-                        },
-                        start: function(event, ui) {
-                            startIndex = ui.value;
-                            // cachedObj.slider('value', Format.getSnapshotSize());
-                        }
-
-                    });
-                    cachedObj.slider("value", startIndex); // default value is 100
-                    cachedObj.slider("enable");    // disable it
+                    var cachedObj = $('#slider');
+                    // startIndex = 100;
+                    createSlider(cachedObj, 1);
 
                     // push the console to the end of the page
                     var cachedConsole = $('#console');
@@ -127,7 +128,7 @@
                         // Get the error
                         var error = ieditor.error(),
                         consoleCheck = $("#console");
-                        console.log(error);
+                        //console.log(error);
                         if (error === "") {
                             error = "Great! Successfully execute the script.";
                         }
