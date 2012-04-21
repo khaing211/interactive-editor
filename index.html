@@ -78,10 +78,12 @@
                                 // call forward
                                 console.log('call forward');
                                 console.log('x: ' + x);
-                                } else if(curIndex < startIndex) {
+                                Format.forward(x);
+                            } else if(curIndex < startIndex) {
                                 // call rewrind
                                 console.log('call rewind');
                                 console.log('x: ' + x);
+                                Format.rewind(x);
                             }
                         },
                         start: function(event, ui) {
