@@ -71,7 +71,7 @@
             <i class="icon-remove" id="close-debug" style="position:absolute; top:0; right:0;cursor:pointer;"></i>
         </div>
         <script>
-            IEditor("editor","terminal", "system");
+            var ieditor = IEditor("editor","terminal", "system");
             //Added scrollbar
             // Preloading the images used for the slider handle
             $(document).ready(function(){
@@ -121,8 +121,15 @@
                     // running debuging
                     $("#debug").click(function(e){
                         e.preventDefault();
-                        // TODO: get the real error
-                        $("#console").append("<span>Great! Successful execute the script.<\/span>").show().addClass('well');
+                        // Get the error
+                        var error = ieditor.error(),
+                        consoleCheck = $("#console");
+                        console.log(error);
+                        if (error === "") {
+                            error = "Great! Successful execute the script.";
+                        }
+                        consoleCheck.children('span').remove();
+                        consoleCheck.append("<span>"+error+"<\/span>").show().addClass('well');
                     });
                     $("#close-debug").click(function(e){
                         e.preventDefault();
