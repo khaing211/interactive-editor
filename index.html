@@ -79,21 +79,16 @@
                     var cachedObj = $('#slider'),
                     startIndex = 100;
                     cachedObj.slider({
-                        change: function(event, ui) {
-                            console.log(ui.value);
+                        change: function(event, ui) {                            
                             var curIndex = ui.value,
                             sIndex = startIndex,
                             snapshotSize = Format.getSnapshotSize(),
                             x = Math.round((snapshotSize / 100) * curIndex);
                             if (curIndex > startIndex) {
-                                // call forward
-                                console.log('call forward');
-                                console.log('x: ' + x);
+                                // call forward                               
                                 Format.forward(x);
                             } else if(curIndex < startIndex) {
                                 // call rewrind
-                                console.log('call rewind');
-                                console.log('x: ' + x);
                                 Format.rewind(x);
                             }
                         },
