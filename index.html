@@ -83,7 +83,15 @@
                             var curIndex = ui.value,
                             sIndex = startIndex,
                             snapshotSize = Format.getSnapshotSize(),
-                            x = Math.round((snapshotSize / 100) * curIndex);
+                            sizeOfslider = cachedObj.slider('value');
+
+                            if (sizeOfslider === 0) {
+                                x = Math.round((snapshotSize / 1) * curIndex);
+                                console.log(sizeOfslider);
+                            } else {
+                                x = Math.round((snapshotSize / sizeOfslider) * curIndex);
+                            }
+
                             if (curIndex > startIndex) {
                                 // call forward                               
                                 Format.forward(x);
@@ -94,6 +102,7 @@
                         },
                         start: function(event, ui) {
                             startIndex = ui.value;
+                            // cachedObj.slider('value', Format.getSnapshotSize());
                         }
 
                     });
