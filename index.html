@@ -37,19 +37,24 @@
             </div>
             <div class="row" style="margin: 5px 0;">
                 <div class="span12">
+                    <div class="span5">
+                        <h6 class="span2">Choose Language:</h6>
+                        <select name="language" id="language" style="margin:0;position:relative;top:-5px;">
+                            <option value="1">Javascript</option>
+                            <option value="2">PHP</option>
+                            <option value="3">Ruby</option>
+                            <option value="4">Python</option>
+                        </select>
+                    </div>
                     <div class="span2" style="text-align:right;">
                         <h6>History Timeline: </h6>
                     </div>
-                    <div class="span9">
+                    <div class="span4">
                         <div id="slider"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- <div style="width:90%; margin: 5px auto;"> -->
-        <!--     <div class="span7"> -->
-        <!--     </div> -->
-        <!-- </div> -->
         <form action="">
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
@@ -58,60 +63,36 @@
             IEditor("editor","terminal", "system");
             //Added scrollbar
             // Preloading the images used for the slider handle
-            // function updateSelect() {
-            //     var sel = document.getElementById("selectTest");
-            //     console.log("Range -10 to 10, current value: " + sel.options[sel.selectedIndex].value);
-            // }
-            // fdSliderController.addEvent(window, 'load', updateSelect);
             $(document).ready(function(){
-                var cachedObj = $('#slider'),
+                (function(){
+                    var cachedObj = $('#slider'),
                     startIndex = 100;
-                cachedObj.slider({
-                    change: function(event, ui) {
-                        console.log(ui.value);
-                        var curIndex = ui.value,
+                    cachedObj.slider({
+                        change: function(event, ui) {
+                            console.log(ui.value);
+                            var curIndex = ui.value,
                             sIndex = startIndex,
-                            snapshotSize = Format.getSnapshotSize();
-                        snapshotSize =  9;
-                        var x = Math.round((snapshotSize / 100) * curIndex);
-                        if (curIndex > startIndex) {
-                            // call forward
-                            console.log('call forward');
-                            console.log('x: ' + x);
-                        } else if(curIndex < startIndex) {
-                            // call rewrind
-                            console.log('call rewind');
-                            console.log('x: ' + x);
+                            snapshotSize = Format.getSnapshotSize(),
+                            x = Math.round((snapshotSize / 100) * curIndex);
+                            if (curIndex > startIndex) {
+                                // call forward
+                                console.log('call forward');
+                                console.log('x: ' + x);
+                                } else if(curIndex < startIndex) {
+                                // call rewrind
+                                console.log('call rewind');
+                                console.log('x: ' + x);
+                            }
+                        },
+                        start: function(event, ui) {
+                            console.log(ui.value);
+                            startIndex = ui.value;
                         }
-                        // // retrieve all the data
-                        // var editorValue = $('body').data('editorValue'),
-                        //     terminal = $('body').data('terminal'),
-                        //     snapshot = $('body').data('snapshot');
-                        // if (snapshot !== undefined) {
-                        //     var sizeOfSnapShot = snapshot.length,
-                        //         to = Math.round((sizeOfSnapShot / 100) * ui.value);
-                        //     if (to !== 0) {
-                        //         var range = {
-                        //                 'from': 0,
-                        //                 'to': to
-                        //             };
-                        //         // create the fromat object and run the align again
-                        //         // Format.align(editorValue, snapshot.slice(range.from, range.to));
-                        //         if ($(this).slider('value') > ui.value) {
-                        //             
-                        //         }
-                        //     }
-                        // }
-                    },
-                    start: function(event, ui) {
-                        console.log(ui.value);
-                        // $('body').data('sliderIndex', ui.value);
-                        startIndex = ui.value;
-                    }
 
-                });
-                cachedObj.slider("value", startIndex); // default value is 100
-                cachedObj.slider("enable");    // disable it
+                    });
+                    cachedObj.slider("value", startIndex); // default value is 100
+                    cachedObj.slider("enable");    // disable it
+                })();
             });
         </script>
     </body>
