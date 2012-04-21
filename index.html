@@ -8,6 +8,7 @@
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
         <script src="lib/codemirror/lib/codemirror.js"></script>
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script src="lib/ieditor/util.js"></script>
         <script src="lib/esprima/esprima.js"></script>
         <script src="lib/ieditor/ajax.js"></script>
@@ -16,7 +17,6 @@
         <script src="lib/ieditor/format.js"></script>
         <script src="lib/ieditor/ieditor.js"></script>
         <script src="lib/ieditor/system.js"></script>
-		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
         <style type="text/css">
             .ui-slider-horizontal .ui-state-default {
@@ -35,10 +35,21 @@
                     <img src="img/iEditor.png" alt="iEditor" width="80%" height="80%" />
                 </div>
             </div>
+            <div class="row" style="margin: 5px 0;">
+                <div class="span12">
+                    <div class="span2" style="text-align:right;">
+                        <h6>History Timeline: </h6>
+                    </div>
+                    <div class="span9">
+                        <div id="slider"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="width:90%; margin: 5px auto;">
-            <div id="slider"></div>
-        </div>
+        <!-- <div style="width:90%; margin: 5px auto;"> -->
+        <!--     <div class="span7"> -->
+        <!--     </div> -->
+        <!-- </div> -->
         <form action="">
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
@@ -53,7 +64,26 @@
             // }
             // fdSliderController.addEvent(window, 'load', updateSelect);
             $(document).ready(function(){
-				$('#slider').slider();
+                var cachedObj = $('#slider');
+                cachedObj.slider({
+                    slide: function(event, ui) {
+                        // retrieve all the data
+                        var editorValue = $('body').data('editorValue'),
+                            terminal = $('body').data('terminal'),
+                            snapshot = $('body').data('snapshot');
+                        if (snapshot !== undefined) {
+                            var sizeOfSnapShot = snapshot.length,
+                                range = {
+                                    'from': 0,
+                                    'to': Math.round((sizeOfSnapShot / 100) * ui.value)
+                                };
+                            // create the fromat object and run the align again
+                            Format.align(editorValue, terminal, snapshot.slice(range.from, range.to));
+                        }
+                    }
+                });
+                cachedObj.slider("value", 100); // default value is 100
+                cachedObj.slider("disable");    // disable it
             });
         </script>
     </body>
