@@ -18,6 +18,7 @@
         <script src="lib/ieditor/ieditor.js"></script>
         <script src="lib/ieditor/system.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
+		<script type="text/javascript" src="js/waypoints.min.js"></script>
         <style type="text/css">
             .ui-slider-horizontal .ui-state-default {
                 background: white url(img/slider/bot.png) no-repeat scroll 50% 50%;
@@ -35,7 +36,7 @@
                     <img src="img/iEditor.png" alt="iEditor" width="80%" height="80%" />
                 </div>
             </div>
-            <div class="row" style="margin: 5px 0;">
+            <div class="row" id="controlbar" style="margin: 5px 0;">
                 <div class="span12">
                     <div class="span5">
                         <h6 class="span2">Choose Language:</h6>
@@ -59,6 +60,9 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
+        <div id="console" style="widht:49%; background: #eee;">
+            This is a result div.
+        </div>
         <script>
             IEditor("editor","terminal", "system");
             //Added scrollbar
@@ -94,6 +98,19 @@
                     });
                     cachedObj.slider("value", startIndex); // default value is 100
                     cachedObj.slider("enable");    // disable it
+
+                    // push the console to the end of the page
+                    var cachedConsole = $('#console');
+                    cachedConsole.css({'position': 'fixed', 'bottom': 0, 'left': 0, 'z-index': 100});
+                    // using waypoint to find out that div and change it css to fixed
+                    var controlbarDiv = $('#controlbar');
+                    controlbarDiv.waypoint(function(event, direction){
+                        if (direction === 'down') {
+                            controlbarDiv.css({'position': 'fixed', 'top': 5});
+                        } else {
+                            controlbarDiv.css({'position': ''});
+                        }
+                    });
                 })();
             });
         </script>
