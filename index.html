@@ -7,6 +7,11 @@
         <link rel="stylesheet" href="css/style.css">
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
         <script src="lib/codemirror/lib/codemirror.js"></script>
+        <!-- Added simple hint -->
+        <script src="lib/codemirror/lib/util/simple-hint.js"></script>
+        <link rel="stylesheet" href="lib/codemirror/lib/util/simple-hint.css">
+        <script src="lib/codemirror/lib/util/javascript-hint.js"></script>
+        <!-- End adding javascript hint -->
         <script src="lib/codemirror/mode/javascript/javascript.js"></script>
 		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script src="lib/ieditor/util.js"></script>
@@ -18,6 +23,7 @@
         <script src="lib/ieditor/ieditor.js"></script>
         <script src="lib/ieditor/system.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
+		<script type="text/javascript" src="js/waypoints.min.js"></script>
         <style type="text/css">
             .ui-slider-horizontal .ui-state-default {
                 background: white url(img/slider/bot.png) no-repeat scroll 50% 50%;
@@ -35,9 +41,9 @@
                     <img src="img/iEditor.png" alt="iEditor" width="80%" height="80%" />
                 </div>
             </div>
-            <div class="row" style="margin: 5px 0;">
+            <div class="row" id="controlbar" style="margin: 5px 0;">
                 <div class="span12">
-                    <div class="span5">
+                    <div class="span6">
                         <h6 class="span2">Choose Language:</h6>
                         <select name="language" id="language" style="margin:0;position:relative;top:-5px;">
                             <option value="1">Javascript</option>
@@ -45,11 +51,12 @@
                             <option value="3">Ruby</option>
                             <option value="4">Python</option>
                         </select>
+                        <button class="btn btn-danger" id="debug" style="position: relative; top:-5px;">Debug</button>
                     </div>
                     <div class="span2" style="text-align:right;">
                         <h6>History Timeline: </h6>
                     </div>
-                    <div class="span4">
+                    <div class="span3">
                         <div id="slider"></div>
                     </div>
                 </div>
@@ -59,6 +66,9 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
+        <div id="console" style="widht:49%; background: #eee;">
+            <!-- Insert the debug info here -->
+        </div>
         <script>
             IEditor("editor","terminal", "system");
             //Added scrollbar
@@ -78,10 +88,12 @@
                                 // call forward
                                 console.log('call forward');
                                 console.log('x: ' + x);
-                                } else if(curIndex < startIndex) {
+                                Format.forward(x);
+                            } else if(curIndex < startIndex) {
                                 // call rewrind
                                 console.log('call rewind');
                                 console.log('x: ' + x);
+                                Format.rewind(x);
                             }
                         },
                         start: function(event, ui) {
@@ -92,6 +104,21 @@
                     });
                     cachedObj.slider("value", startIndex); // default value is 100
                     cachedObj.slider("enable");    // disable it
+
+                    // push the console to the end of the page
+                    var cachedConsole = $('#console');
+                    cachedConsole.css({'position': 'fixed', 'bottom': 0, 'left': 0, 'z-index': 100});
+                    // using waypoint to find out that div and change it css to fixed
+                    var controlbarDiv = $('#controlbar');
+                    controlbarDiv.waypoint(function(event, direction){
+                        if (direction === 'down') {
+                            controlbarDiv.css({'position': 'fixed', 'top': 5, 'z-index': 10});
+                        } else {
+                            controlbarDiv.css({'position': ''});
+                        }
+                    });
+                    // running debuging
+
                 })();
             });
         </script>
