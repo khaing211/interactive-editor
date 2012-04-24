@@ -16,13 +16,16 @@
 }
 .ui-slider .ui-slider-handle {
     width: 2em !important;
-    height: 1.5em !important;
+    height: 1.3em !important;
 }
 body {
     padding-top: 50px;
 }
 #banner {
     padding-top: 10px;
+}
+#banner div {
+    margin:0 !important;
 }
 .navbar-inner {
     background: transparent url(../img/ieditor-banner.png) repeat-x;
@@ -79,4 +82,13 @@ textarea {
 
 #console {
     text-align: center;
+}
+
+.help a {
+    color: white;
+    text-shadow: 0 1px 0 #444;
+    text-decoration: underline;
+}
+.help {
+    width: 100px;
 }
