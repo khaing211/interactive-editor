@@ -23,35 +23,23 @@
         <script src="lib/ieditor/ieditor.js"></script>
         <script src="lib/ieditor/system.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
-		<script type="text/javascript" src="js/waypoints.min.js"></script>
-        <style type="text/css">
-            .ui-slider-horizontal .ui-state-default {
-                background: white url(img/slider/bot.png) no-repeat scroll 50% 50%;
-            }
-            .ui-slider .ui-slider-handle {
-                width: 2em;
-                height: 1.5em;
-            }
-        </style>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="span12" style="text-align:center">
-                    <img src="img/iEditor.png" alt="iEditor" width="80%" height="80%" />
-                </div>
-            </div>
-            <div class="row" id="controlbar" style="margin: 5px 0;">
-                <div class="span12">
-                    <div class="span6">
+        <div class="navbar navbar-fixed-top" id="controlbar">
+            <div class="navbar-inner">
+                <div class="container" id="banner">
+                    <div class="span2" id="logo">
+                        iEditor
+                    </div>
+                    <div class="span5">
                         <h6 style="width:125px;display:block;float:left;">Choose Language:</h6>
-                        <select name="language" id="language" style="margin:0;position:relative;top:-5px;">
+                        <select name="language" id="language" class="span2" style="margin:0;position:relative;top:-5px;">
                             <option value="1">Javascript</option>
-                            <option value="2">PHP</option>
-                            <option value="3">Ruby</option>
-                            <option value="4">Python</option>
+                            <option value="2" disabled=true>PHP</option>
+                            <option value="3" disabled=true>Ruby</option>
+                            <option value="4" disabled=true>Python</option>
                         </select>
-                        <button class="btn btn-danger" id="debug" style="position: relative; top:-5px;">Debug</button>
+                        <button class="btn btn-danger" id="debug" style="margin:0; position: relative; top:-5px;">Debug</button>
                     </div>
                     <div class="span2" style="text-align:right;">
                         <h6>History Timeline: </h6>
@@ -66,85 +54,8 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
-        <div id="console" class="well" style="widht:49%; background: #eee; margin:0; position:relative;display:none;">
-            <!-- Insert the debug info here -->
-            <i class="icon-remove" id="close-debug" style="position:absolute; top:0; right:0;cursor:pointer;"></i>
-        </div>
-        <script>
-            var ieditor = IEditor("editor","terminal", "system");
-            //Added scrollbar
-            // Preloading the images used for the slider handle
-            function createSlider(cachedObj, size) {
-                var startIndex;
-                cachedObj.slider({
-                    step: 1,
-                    max: size,
-                    change: function(event, ui) {
-                        var curIndex = ui.value,
-                        snapshotSize = Format.getSnapshotSize(),
-                        sizeOfslider = cachedObj.slider('value');
-
-                        if (curIndex > startIndex) {
-                            // call forward
-                            // console.log(curIndex);
-                            // console.log('forwarding');
-                            Format.forward(curIndex);
-                            } else if(curIndex < startIndex) {
-                            // call rewrind
-                            // console.log(curIndex);
-                            // console.log('rewinding');
-                            Format.rewind(curIndex);
-                        }
-                    },
-                    start: function(event, ui) {
-                        startIndex = ui.value;
-                        // cachedObj.slider('value', Format.getSnapshotSize());
-                    }
-
-                });
-                cachedObj.slider('value', size);
-            }
-            $(document).ready(function(){
-                (function(){
-                    var cachedObj = $('#slider');
-                    // startIndex = 100;
-                    createSlider(cachedObj, 1);
-
-                    // push the console to the end of the page
-                    var cachedConsole = $('#console');
-                    cachedConsole.css({'position': 'fixed', 'bottom': 0, 'left': 0, 'z-index': 100});
-                    // using waypoint to find out that div and change it css to fixed
-                    var controlbarDiv = $('#controlbar');
-                    controlbarDiv.waypoint(function(event, direction){
-                        if (direction === 'down') {
-                            controlbarDiv.css({'position': 'fixed', 'top': 5, 'z-index': 10});
-                        } else {
-                            controlbarDiv.css({'position': ''});
-                        }
-                    });
-                    // running debuging
-                    $("#debug").click(function(e){
-                        e.preventDefault();
-                        // Get the error
-                        var error = ieditor.error(),
-                        consoleCheck = $("#console");
-                        //console.log(error);
-                        if (error === "") {
-                            error = "Great! Successfully execute the script.";
-                        }
-                        consoleCheck.children('span').remove();
-                        consoleCheck.append("<span>"+error+"<\/span>").show().addClass('well');
-                    });
-                    $("#close-debug").click(function(e){
-                        e.preventDefault();
-                        $(this).parent().hide().removeClass('well').children('span').remove();
-                    });
-
-                    // // make the height to full size
-                    // var winHeight = $(window).height();
-                    // $('.CodeMirror').height(winHeight - 120);
-                })();
-            });
-        </script>
+        <div id="console" class="modal fade well" style="display:none;"></div>
+        <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
     </body>
 </html>

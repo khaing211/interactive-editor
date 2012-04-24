@@ -1,3 +1,46 @@
+@font-face {
+    font-family: 'AirstreamRegular';
+    src: url('font/Airstream-webfont.eot');
+    src: url('font/Airstream-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Airstream-webfont.woff') format('woff'),
+         url('font/Airstream-webfont.ttf') format('truetype'),
+         url('font/Airstream-webfont.svg#AirstreamRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.ui-slider-horizontal .ui-state-default {
+    background: transparent url(../img/slider/bot.png) no-repeat scroll 50% 50% !important;
+}
+.ui-slider .ui-slider-handle {
+    width: 2em !important;
+    height: 1.5em !important;
+}
+body {
+    padding-top: 50px;
+}
+#banner {
+    padding-top: 10px;
+}
+.navbar-inner {
+    background: transparent url(../img/ieditor-banner.png) repeat-x;
+    height: 40px;
+}
+h6 {
+    color: white;
+    text-shadow: 0 1px 0 #444;
+}
+#logo {
+    margin: 0;
+    font: 38px 'AirstreamRegular', Arial, sans-serif;letter-spacing: 0;
+    color: white;
+    position: relative;
+    top: -11px;
+    text-shadow: 0 2px 2px #444;
+}
+
 .CodeMirror {
     border: 1px solid #eee;
     float: left;
@@ -34,3 +77,6 @@ textarea {
   background: white;
 }
 
+#console {
+    text-align: center;
+}
