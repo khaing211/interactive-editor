@@ -23,6 +23,7 @@
         <script src="lib/ieditor/ieditor.js"></script>
         <script src="lib/ieditor/system.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.19.custom.min.js"></script>
+        <script type="text/javascript" src="js/waypoints.min.js"></script>
     </head>
     <body>
         <div class="navbar navbar-fixed-top" id="controlbar">
@@ -55,7 +56,9 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
-        <div id="console" class="modal fade well" style="display:none;"></div>
+        <div id="console" class="well" style="widht:49%; background: #eee; margin:0; position:relative;display:none;">
+            <i class="icon-remove" id="close-debug" style="position:absolute; top:0; right:0;cursor:pointer;"></i>
+        </div>
         <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
     </body>
