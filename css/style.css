@@ -91,6 +91,7 @@ textarea {
 }
 .help {
     width: 100px;
+    color: white;
 }
 
 #debug {
@@ -134,4 +135,8 @@ textarea {
   top:0;
   right:0;
   cursor:pointer;
+}
+
+.text-center {
+  text-align: center;
 }

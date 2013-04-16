@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/webtour.css">
 		<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.19.custom.css" rel="stylesheet" />
         <script src="lib/codemirror/lib/codemirror.js"></script>
         <!-- Added simple hint -->
@@ -37,14 +38,15 @@
                         <select name="language" id="language" class="span2">
                             <option value="1">Javascript</option>
                         </select>
-                        <button class="btn btn-danger" id="debug" >Debug</button>
+                        <button class="btn btn-danger tour_1" id="debug" >Debug</button>
                     </div>
                     <div class="span5 align-left">
                         <h6 class="hist_timeline_text">History Timeline: </h6>
-                        <div id="slider" class="span3"></div>
+                        <div id="slider" class="span3 tour_2"></div>
                     </div>
                     <div class="span1 help">
-                        <a href="http://daifu.tumblr.com/" target="_blank">Help &amp; Tutorials</a>
+                        <a href="#helpModal" role="button" data-toggle="modal" id="helpBox">Help</a> &amp;
+                        <a href="http://daifu.tumblr.com/" target="_blank">Tutorials</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +58,62 @@
         <div id="console" class="well">
             <i class="icon-remove" id="close-debug"></i>
         </div>
+        <div id="helpModal" class="modal hide fade" tabindex="1" role="dialog" aria-labelledby="label" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h3>Help for Interactive Editor</h3>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <a href="#tutorial" id="tutorial" class="btn">Go through all the features</a>
+                    <a href="#sample" id="sample" class="btn">Try out a sample code</a>
+                </div>
+            </div>
+        </div>
+<script type="text/sample" id="sampleCode">
+// This is a merge sort sample
+// Try to use the HISTORY TIMELINE to see how the code run
+function sort(array) {
+    var length = array.length,
+        mid    = Math.floor(length * 0.5),
+        left   = array.slice(0, mid),
+        right  = array.slice(mid, length);
+
+    if(length === 1) {
+        return array;
+    }
+
+    return merge(sort(left), sort(right));
+
+}
+
+function merge(left, right) {
+    var result = [];
+
+    while(left.length || right.length) {
+
+        if(left.length && right.length) {
+
+            if(left[0] < right[0]) {
+                result.push(left.shift());
+            } else {
+                result.push(right.shift());
+            }
+
+        } else if (left.length) {
+            result.push(left.shift());
+        } else {
+            result.push(right.shift());
+        }
+    }
+    return result;
+}
+var ary = [4,3,5,4,5,46,3,2,6,4]; // unsorted array
+var result = sort(ary);
+console.log(result); // sorted array
+</script>
         <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/ui.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/webtour.js"></script>
     </body>
 </html>
