@@ -92,3 +92,46 @@ textarea {
 .help {
     width: 100px;
 }
+
+#debug {
+  margin:0;
+  position: relative;
+  top:-5px;
+}
+
+.hist_timeline_text {
+   width:120px;
+   display:block;
+   float:left;
+}
+
+.align-left {
+  text-align:left;
+}
+
+.header_title {
+  width:80px;
+  display:block;
+  float:left;
+}
+
+#language {
+  margin:0;
+  position:relative;
+  top:-5px;
+}
+
+#console {
+  widht:49%;
+  background: #eee;
+  margin:0;
+  position:relative;
+  display:none;
+}
+
+#close-debug {
+  position:absolute;
+  top:0;
+  right:0;
+  cursor:pointer;
+}

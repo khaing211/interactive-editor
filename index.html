@@ -33,17 +33,14 @@
                         iEditor
                     </div>
                     <div class="span4">
-                        <h6 style="width:80px;display:block;float:left;">Language:</h6>
-                        <select name="language" id="language" class="span2" style="margin:0;position:relative;top:-5px;">
+                        <h6 class="header_title">Language:</h6>
+                        <select name="language" id="language" class="span2">
                             <option value="1">Javascript</option>
-                            <option value="2" disabled=true>PHP</option>
-                            <option value="3" disabled=true>Ruby</option>
-                            <option value="4" disabled=true>Python</option>
                         </select>
-                        <button class="btn btn-danger" id="debug" style="margin:0; position: relative; top:-5px;">Debug</button>
+                        <button class="btn btn-danger" id="debug" >Debug</button>
                     </div>
-                    <div class="span5" style="text-align:left;">
-                        <h6 style="width:120px;display:block;float:left">History Timeline: </h6>
+                    <div class="span5 align-left">
+                        <h6 class="hist_timeline_text">History Timeline: </h6>
                         <div id="slider" class="span3"></div>
                     </div>
                     <div class="span1 help">
@@ -56,8 +53,8 @@
             <textarea id="editor" name="code">// Type your code here</textarea>
             <textarea id="terminal" name="terminal">// Type your code here</textarea>
         </form>
-        <div id="console" class="well" style="widht:49%; background: #eee; margin:0; position:relative;display:none;">
-            <i class="icon-remove" id="close-debug" style="position:absolute; top:0; right:0;cursor:pointer;"></i>
+        <div id="console" class="well">
+            <i class="icon-remove" id="close-debug"></i>
         </div>
         <script type="text/javascript" charset="utf-8" src="js/bootstrap.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/ui.js"></script>

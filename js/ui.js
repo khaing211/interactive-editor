@@ -1,7 +1,7 @@
 /*jslint browser: true, regexp: true */
 /*global jQuery, $, IEditor, Format */
 
-var ieditor = IEditor("editor","terminal", "system");
+var ieditor = new IEditor("editor","terminal", "system");
 //Added scrollbar
 // Preloading the images used for the slider handle
 function createSlider(cachedObj, size) {
