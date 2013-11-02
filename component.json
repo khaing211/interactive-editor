@@ -1,0 +1,16 @@
+{
+  "name": "ieditor",
+  "version": "0.0.1",
+  "main": "js/main.js",
+  "dependencies": {
+    "esprima": "~1.0.2",
+    "requirejs": "~2.1.5",
+    "bootstrap.css": "~2.1.1",
+    "codemirror": "32050bbb0a9aa4d7e4ff995c4ecd06abf5c926b6"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}

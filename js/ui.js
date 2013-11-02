@@ -1,11 +1,12 @@
 /*jslint browser: true, regexp: true */
-/*global jQuery, $, IEditor, Format */
+/*global jQuery, $, IEditor, Format, console */
+'use strict';
 
 var ieditor = new IEditor("editor","terminal", "system");
 //Added scrollbar
 // Preloading the images used for the slider handle
 function createSlider(cachedObj, size) {
-    var startIndex;
+    var startIndex = size;
     cachedObj.slider({
         step: 1,
         max: size,
@@ -14,10 +15,11 @@ function createSlider(cachedObj, size) {
             snapshotSize = Format.getSnapshotSize(),
             sizeOfslider = cachedObj.slider('value');
 
+            console.log("curIndex: "+curIndex + " vs startIndex: " + startIndex +" snapshotSize "+snapshotSize);
             if (curIndex > startIndex) {
                 // call forward
                 Format.forward(curIndex);
-                } else if(curIndex < startIndex) {
+            } else if(curIndex < startIndex) {
                 // call rewrind
                 Format.rewind(curIndex);
             }
@@ -44,6 +46,7 @@ $(document).ready(function(){
     // push the console to the end of the page
     var cachedConsole = $('#console');
     cachedConsole.css({'position': 'fixed', 'bottom': 0, 'left': 0, 'z-index': 100});
+
     // using waypoint to find out that div and change it css to fixed
     var controlbarDiv = $('#controlbar');
     controlbarDiv.waypoint(function(event, direction){
